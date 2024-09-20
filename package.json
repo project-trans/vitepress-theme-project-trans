@@ -50,12 +50,17 @@
     "vue": "^3.5.6"
   },
   "dependencies": {
+    "@iconify-json/carbon": "^1.2.1",
+    "@iconify-json/icon-park-outline": "^1.2.0",
     "@iconify-json/octicon": "^1.2.0",
     "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.1.2",
     "@nolebase/vitepress-plugin-git-changelog": "^2.1.2",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.1.2",
     "@nolebase/vitepress-plugin-meta": "^2.2.1",
     "@project-trans/suggestion-box": "^0.0.9",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-pangu": "^1.0.2",
     "unplugin-vue-components": "^0.27.4"
   },
   "devDependencies": {
@@ -66,9 +71,6 @@
     "@unocss/eslint-plugin": "^0.61.9",
     "eslint": "^8.57.1",
     "eslint-plugin-format": "^0.1.2",
-    "markdown-it-footnote": "^4.0.0",
-    "markdown-it-katex": "^2.0.3",
-    "markdown-it-pangu": "^1.0.2",
     "unbuild": "3.0.0-rc.7"
   },
   "pnpm": {
