@@ -1,0 +1,14 @@
+{
+  "name": "vitepress-project",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@project-trans/vitepress-theme-project-trans": "workspace:*"
+  },
+  "devDependencies": { "vitepress": "^1.2.3" }
+}
