@@ -18,7 +18,7 @@ jobs:
       - name: 设置 Node.js 环境
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 'latest'
           registry-url: 'https://registry.npmjs.org/'
 
       - name: 安装依赖
@@ -26,21 +26,17 @@ jobs:
 
       - name: 更新 package.json 中的版本号
         id: update_version
+        if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'release')
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           MAJOR_MINOR_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1"."$2}')
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == refs/tags/* ]]; then
-            NEW_VERSION="${{ github.ref }}"
-            NEW_VERSION=${NEW_VERSION#refs/tags/}
-          else
-            NEW_VERSION="${MAJOR_MINOR_VERSION}.$(date +%s)"
-          fi
+          NEW_VERSION="${MAJOR_MINOR_VERSION}.$(date +%s)"
 
           npm version $NEW_VERSION --no-git-tag-version
           echo "new_version=${NEW_VERSION}" >> $GITHUB_ENV
 
       - name: 发布到 NPM（main 分支的预发布版本）
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'release')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
         run: npm publish --tag prerelease
