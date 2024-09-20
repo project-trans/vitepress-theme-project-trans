@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/project-trans/RLE-wiki"
+    "url": "https://github.com/project-trans/vitepress-theme-project-trans"
   },
   "exports": {
     "./config": {
