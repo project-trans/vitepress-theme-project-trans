@@ -1,0 +1,52 @@
+name: 发包到 NPM
+
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发
+    tags:
+      - '*'  # 当打 tag 时触发
+
+jobs:
+  release:
+    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 作为运行环境
+
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v3
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 更新 package.json 中的版本号
+        id: update_version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          MAJOR_MINOR_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1"."$2}')
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == refs/tags/* ]]; then
+            NEW_VERSION="${{ github.ref }}"
+            NEW_VERSION=${NEW_VERSION#refs/tags/}
+          else
+            NEW_VERSION="${MAJOR_MINOR_VERSION}.$(date +%s)"
+          fi
+
+          npm version $NEW_VERSION --no-git-tag-version
+          echo "new_version=${NEW_VERSION}" >> $GITHUB_ENV
+
+      - name: 发布到 NPM（main 分支的预发布版本）
+        if: github.ref == 'refs/heads/main'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
+        run: npm publish --tag prerelease
+
+      - name: 发布到 NPM（使用 tag 的正式版本发布）
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
+        run: npm publish
