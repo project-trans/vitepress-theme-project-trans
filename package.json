@@ -34,6 +34,9 @@
   "main": "./dist/config.js",
   "module": "./dist/config.mjs",
   "types": "./dist/config.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild",
     "dev": "vitepress dev",
