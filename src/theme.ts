@@ -1,13 +1,10 @@
 // https://vitepress.dev/guide/custom-theme
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
-import { h } from 'vue'
-import './custom-font.css'
 
 import {
   NolebaseEnhancedReadabilitiesPlugin,
 } from '@nolebase/vitepress-plugin-enhanced-readabilities/client'
-
 import {
   NolebaseGitChangelogPlugin,
 } from '@nolebase/vitepress-plugin-git-changelog/client'

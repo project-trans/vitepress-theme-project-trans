@@ -41,3 +41,10 @@ const { frontmatter } = useData()
     </Layout>
   </AppearanceToggle>
 </template>
+
+<style>
+:root {
+  --vp-font-family-base: sans-serif;
+  --vp-font-family-mono: monospace;
+}
+</style>
