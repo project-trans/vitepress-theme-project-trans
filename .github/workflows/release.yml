@@ -10,19 +10,29 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest  # 使用最新的 Ubuntu 作为运行环境
-
+    if: '!(( github.ref == ''refs/heads/main'' ) && contains(github.event.head_commit.message, ''release''))'
     steps:
       - name: 检出仓库代码
         uses: actions/checkout@v3
 
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: false
+          version: 9
+          
       - name: 设置 Node.js 环境
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
           registry-url: 'https://registry.npmjs.org/'
+          cache: 'pnpm'
 
       - name: 安装依赖
-        run: npm install
+        run: pnpm i
+
+      - name: 构建
+        run: pnpm build
 
       - name: 更新 package.json 中的版本号
         id: update_version
@@ -32,17 +42,17 @@ jobs:
           MAJOR_MINOR_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1"."$2}')
           NEW_VERSION="${MAJOR_MINOR_VERSION}.$(date +%s)"
 
-          npm version $NEW_VERSION --no-git-tag-version
+          pnpm version $NEW_VERSION --no-git-tag-version
           echo "new_version=${NEW_VERSION}" >> $GITHUB_ENV
 
       - name: 发布到 NPM（main 分支的预发布版本）
         if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'release')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
-        run: npm publish --tag prerelease
+        run: pnpm publish --tag prerelease --access public --no-git-checks
 
       - name: 发布到 NPM（使用 tag 的正式版本发布）
         if: startsWith(github.ref, 'refs/tags/')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
-        run: npm publish
+        run: pnpm publish --access public --no-git-checks
