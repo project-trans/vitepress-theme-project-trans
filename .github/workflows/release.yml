@@ -63,10 +63,17 @@ jobs:
             echo "release_type=latest" >> $GITHUB_ENV
           fi
 
+      - name: 使用 GitHub App 进行身份验证
+        id: auth
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_SECRET }}
+        
       - name: 触发 RLE-wiki 仓库的构建工作流
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.BOT_APP_SECRET }}" \
+            -H "Authorization: token ${{ steps.auth.outputs.token }}" \
             https://api.github.com/repos/project-trans/RLE-wiki/actions/workflows/update-and-build.yml/dispatches \
             -d '{"ref":"main", "inputs": {"theme_version": "${{ env.release_type }}"}}'
