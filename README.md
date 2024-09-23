@@ -2,6 +2,8 @@
 
 这是一个由 Project Trans 开发的 VitePress 主题。
 
+[构建效果](https://rle.wiki/)
+
 ## 使用方式
 
 修改下述两个文件：
