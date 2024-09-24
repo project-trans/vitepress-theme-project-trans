@@ -7,6 +7,8 @@ type NavConfig = DefaultTheme.Config['nav']
 
 export interface ThemeContext {
   siteTitle: string
+  siteLogo: string
+  SiteTitle: string
   siteDescription: string
   githubRepoLink: string
   rootDir: string

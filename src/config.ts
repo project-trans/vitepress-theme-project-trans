@@ -43,7 +43,7 @@ function countWords(content: string): number {
 // https://vitepress.dev/reference/site-config
 function genConfig() {
   const themeConfig = useThemeContext()
-  const { siteTitle, githubRepoLink, nav }
+  const { siteTitle, githubRepoLink, nav, siteLogo, SiteTitle}
     = themeConfig
   return defineConfig({
     lang: 'zh-CN',
@@ -90,11 +90,8 @@ function genConfig() {
     ],
     themeConfig: {
       // https://vitepress.dev/reference/default-theme-config
-      siteTitle: false,
-      logo: {
-        src: '/logo-horizontal.svg',
-        alt: 'Logo: RLE.wiki',
-      },
+      siteTitle: SiteTitle,
+      logo: siteLogo,
       nav,
       sidebar: generateSidebar(),
       socialLinks: [{ icon: 'github', link: githubRepoLink }],
