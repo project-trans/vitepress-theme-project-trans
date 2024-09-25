@@ -179,7 +179,7 @@ function genConfig() {
       plugins: [
         GitChangelog({
           repoURL: githubRepoLink,
-          include: enableChangeLog ? ['** /*.md', '!node_modules'] : [],
+          include: enableChangeLog ? ['**/*.md', '!node_modules'] : [],
         }),
         // GitChangelogMarkdownSection({
         //   sections: {

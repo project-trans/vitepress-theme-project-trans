@@ -19,7 +19,7 @@ const themeConfig: ThemeContext = {
   include: ['campus', 'contributor-guide', 'fashion'],
   nav,
   sidebarOptions,
-  enableChangeLog: false,
+  // enableChangeLog: false,
   enableSuggestionBox: false,
 }
 
