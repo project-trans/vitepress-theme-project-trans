@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { NolebaseGitChangelog } from '@nolebase/vitepress-plugin-git-changelog/client'
-import { useRoute } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import { ref, watch } from 'vue'
 import { AppSBox } from '../components'
+import type { PjtsThemeConfig } from '../config'
 
 const route = useRoute()
+const { theme } = useData<PjtsThemeConfig>()
 
 // 定义一个 ref 来存储动态 key
 const componentKey = ref(0)
@@ -19,10 +21,14 @@ function updateKeyAndFrontmatter() {
 }
 
 // 监听路由变化，更新 key 和 frontmatter
-watch(() => route.path, () => {
-  isFrontmatterLoaded.value = false
-  updateKeyAndFrontmatter()
-}, { immediate: true }) // 在组件挂载时立即执行一次，确保第一次渲染时 key 和 frontmatter 是正确的
+watch(
+  () => route.path,
+  () => {
+    isFrontmatterLoaded.value = false
+    updateKeyAndFrontmatter()
+  },
+  { immediate: true },
+) // 在组件挂载时立即执行一次，确保第一次渲染时 key 和 frontmatter 是正确的
 
 // 在组件挂载时更新 key 和 frontmatter
 // onMounted(updateKeyAndFrontmatter);
@@ -30,11 +36,17 @@ watch(() => route.path, () => {
 
 <template>
   <div :key="componentKey" class="vp-doc">
-    <h2 id="意见反馈">
+    <h2 v-if="theme.enableSuggestionBox" id="意见反馈">
       意见反馈
     </h2>
-    <AppSBox />
+    <AppSBox v-if="theme.enableSuggestionBox" />
     <!-- 仅在 Frontmatter 加载完成且未设置 hideChangelog 时渲染 GitChangelog -->
-    <NolebaseGitChangelog v-if="isFrontmatterLoaded && !frontmatter.hideChangelog" />
+    <NolebaseGitChangelog
+      v-if="
+        isFrontmatterLoaded
+          && theme.enableChangeLog
+          && !frontmatter.hideChangelog
+      "
+    />
   </div>
 </template>

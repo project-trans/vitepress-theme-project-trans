@@ -19,6 +19,8 @@ const themeConfig: ThemeContext = {
   include: ['campus', 'contributor-guide', 'fashion'],
   nav,
   sidebarOptions,
+  enableChangeLog: false,
+  enableSuggestionBox: false,
 }
 
 // https://vitepress.dev/reference/site-config

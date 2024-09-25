@@ -10,10 +10,16 @@ import katex from 'markdown-it-katex'
 import mdPangu from 'markdown-it-pangu'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vitepress'
+import type { DefaultTheme } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 
 import { generateSidebar } from './sidebar'
 import { useThemeContext } from './utils/themeContext'
+
+export interface PjtsThemeConfig extends DefaultTheme.Config {
+  enableChangeLog?: boolean
+  enableSuggestionBox?: boolean
+}
 
 // 从文件系统读取 Markdown 文件内容
 function readMarkdownFileContent(filePath: string): string {
@@ -34,7 +40,8 @@ function countWords(content: string): number {
     .replace(/\s+/g, ' ') // 将多余的空格归为一个空格
     .trim() // 去除首尾空格
 
-  const chineseCharacters = cleanedContent.match(/[\u4E00-\u9FFF\uFF01-\uFFE5]/g) || []
+  const chineseCharacters
+    = cleanedContent.match(/[\u4E00-\u9FFF\uFF01-\uFFE5]/g) || []
   const words = cleanedContent.split(/\s+/).filter(Boolean)
 
   return chineseCharacters.length + words.length
@@ -43,9 +50,16 @@ function countWords(content: string): number {
 // https://vitepress.dev/reference/site-config
 function genConfig() {
   const themeConfig = useThemeContext()
-  const { siteTitle, githubRepoLink, nav, siteLogo, SiteTitle}
-    = themeConfig
-  return defineConfig({
+  const {
+    siteTitle,
+    githubRepoLink,
+    nav,
+    siteLogo,
+    SiteTitle,
+    enableChangeLog = true,
+    enableSuggestionBox = true,
+  } = themeConfig
+  return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
     title: siteTitle,
     cleanUrls: true,
@@ -89,6 +103,8 @@ function genConfig() {
       ['meta', { property: 'og:site_name', content: siteTitle }],
     ],
     themeConfig: {
+      enableSuggestionBox,
+      enableChangeLog,
       // https://vitepress.dev/reference/default-theme-config
       siteTitle: SiteTitle,
       logo: siteLogo,
@@ -163,6 +179,7 @@ function genConfig() {
       plugins: [
         GitChangelog({
           repoURL: githubRepoLink,
+          include: enableChangeLog ? ['** /*.md', '!node_modules'] : [],
         }),
         // GitChangelogMarkdownSection({
         //   sections: {

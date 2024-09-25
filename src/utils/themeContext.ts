@@ -15,6 +15,8 @@ export interface ThemeContext {
   include: string[]
   nav: NavConfig
   sidebarOptions: Options | Options[]
+  enableSuggestionBox?: boolean
+  enableChangeLog?: boolean
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
