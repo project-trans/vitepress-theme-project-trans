@@ -59,6 +59,7 @@ function genConfig() {
     baseUrl = '/',
     enableChangeLog = true,
     enableSuggestionBox = true,
+    sitePattern,
   } = themeConfig
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
@@ -114,7 +115,7 @@ function genConfig() {
       sidebar: generateSidebar(),
       socialLinks: [{ icon: 'github', link: githubRepoLink }],
       editLink: {
-        pattern: `${githubRepoLink}/edit/main/docs/:path`,
+        pattern: `${githubRepoLink}/edit/main/${sitePattern}/:path`,
         text: '在 GitHub 上编辑此页面', // label localization
       },
       // label localization

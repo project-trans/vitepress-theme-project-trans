@@ -17,6 +17,7 @@ export interface ThemeContext {
   sidebarOptions: VitePressSidebarOptions[]
   enableSuggestionBox?: boolean
   enableChangeLog?: boolean
+  sitePattern?: string
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
