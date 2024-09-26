@@ -56,12 +56,14 @@ function genConfig() {
     nav,
     siteLogo,
     SiteTitle,
+    baseUrl = '/',
     enableChangeLog = true,
     enableSuggestionBox = true,
   } = themeConfig
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
     title: siteTitle,
+    base: baseUrl,
     cleanUrls: true,
     markdown: {
       config(md) {
