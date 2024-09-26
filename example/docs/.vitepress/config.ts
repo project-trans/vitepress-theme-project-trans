@@ -6,7 +6,22 @@ import type { DefaultTheme } from 'vitepress'
 
 const nav: DefaultTheme.NavItem[] = []
 
-const sidebarOptions: SidebarOptions = []
+const baseConfig = {
+  useTitleFromFrontmatter: true,
+  useFolderTitleFromIndexFile: true,
+  useFolderLinkFromIndexFile: true,
+  collapsed: true,
+  documentRootPath: '/docs',
+} satisfies Partial<SidebarOptions>
+
+const sidebarOptions = [
+  {
+    ...baseConfig,
+    scanStartPath: 'campus',
+    resolvePath: '/campus/',
+    sortMenusByFrontmatterOrder: true,
+  }
+]
 
 const themeConfig: ThemeContext = {
   siteTitle: 'RLE.wiki',
