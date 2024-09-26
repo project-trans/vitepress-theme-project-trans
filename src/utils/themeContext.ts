@@ -9,6 +9,7 @@ export interface ThemeContext {
   siteTitle: string
   siteLogo: string
   SiteTitle: string
+  baseUrl?: string
   siteDescription: string
   githubRepoLink: string
   rootDir: string

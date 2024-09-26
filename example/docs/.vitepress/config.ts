@@ -11,6 +11,7 @@ const sidebarOptions: SidebarOptions = []
 const themeConfig: ThemeContext = {
   siteTitle: 'RLE.wiki',
   siteDescription: '一份 RLE 指北',
+  // baseUrl: '/',
   /** Repo */
   githubRepoLink: 'https://github.com/project-trans/RLE-wiki',
   /** vitepress 根目录 */
