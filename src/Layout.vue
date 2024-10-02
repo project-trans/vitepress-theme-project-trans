@@ -1,17 +1,16 @@
 <script lang="ts" setup>
-import DefaultTheme from 'vitepress/theme'
-import {
-  NolebaseHighlightTargetedHeading,
-} from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
 import {
   NolebaseEnhancedReadabilitiesMenu,
   NolebaseEnhancedReadabilitiesScreenMenu,
 } from '@nolebase/vitepress-plugin-enhanced-readabilities/client'
-
+import {
+  NolebaseHighlightTargetedHeading,
+} from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
 import { useData } from 'vitepress'
-import CopyrightInfo from './components/CopyrightInfo.vue'
-import AppFooter from './components/AppFooter.vue'
+import DefaultTheme from 'vitepress/theme'
 import AppearanceToggle from './components/AppearanceToggle.vue'
+import AppFooter from './components/AppFooter.vue'
+import CopyrightInfo from './components/CopyrightInfo.vue'
 import PageInfo from './components/PageInfo.vue'
 
 const { Layout } = DefaultTheme

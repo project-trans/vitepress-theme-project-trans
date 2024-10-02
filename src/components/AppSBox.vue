@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SuggestionBox from '@project-trans/suggestion-box'
-import '@project-trans/suggestion-box/dist/style.css'
 </script>
 
 <template>

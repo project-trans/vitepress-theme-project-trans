@@ -1,5 +1,4 @@
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
-import presetSBox from '@project-trans/suggestion-box/dist/preset'
 
 export default defineConfig({
   shortcuts: [
@@ -30,6 +29,5 @@ export default defineConfig({
       },
       warn: true,
     }),
-    presetSBox(),
   ],
 })
