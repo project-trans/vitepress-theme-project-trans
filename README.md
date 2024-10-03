@@ -10,9 +10,9 @@
 
 ```typescript
 // docs/.vitepress/config.ts
-import genConfig from '@project-trans/vitepress-theme-project-trans/config'
 import type { SidebarOptions } from '@project-trans/vitepress-theme-project-trans/theme'
 import type { ThemeContext } from '@project-trans/vitepress-theme-project-trans/utils'
+import genConfig from '@project-trans/vitepress-theme-project-trans/config'
 import { withThemeContext } from '@project-trans/vitepress-theme-project-trans/utils'
 
 const themeConfig: ThemeContext = {
