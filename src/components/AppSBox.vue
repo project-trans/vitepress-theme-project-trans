@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SuggestionBox from '@project-trans/suggestion-box'
+import SuggestionBox from '@project-trans/suggestion-box/component'
 </script>
 
 <template>
