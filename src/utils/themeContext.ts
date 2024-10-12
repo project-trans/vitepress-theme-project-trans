@@ -18,6 +18,7 @@ export interface ThemeContext {
   enableSuggestionBox?: boolean
   enableChangeLog?: boolean
   sitePattern?: string
+  org?: string
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()

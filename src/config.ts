@@ -60,6 +60,7 @@ function genConfig() {
     enableChangeLog = true,
     enableSuggestionBox = true,
     sitePattern,
+    org,
   } = themeConfig
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
@@ -106,6 +107,7 @@ function genConfig() {
       ['meta', { property: 'og:site_name', content: siteTitle }],
     ],
     themeConfig: {
+      org,
       enableSuggestionBox,
       enableChangeLog,
       // https://vitepress.dev/reference/default-theme-config

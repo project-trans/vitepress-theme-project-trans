@@ -3,6 +3,9 @@ import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vitepress' // 获取路由信息
 import type { Node, Trie } from '../plugins/CopyrightLoader.data'
 import { data } from '../plugins/CopyrightLoader.data'
+import { useData } from 'vitepress';
+const orgName = useData().theme.value.org;
+
 
 // 初始化需要更新的变量
 const attrs = ref<Record<string, any> | null>(null)
@@ -63,7 +66,19 @@ watch(
         <a v-if="attrs?.copyright?.url" :href="attrs.copyright.url">{{ displayAuthors }}</a>
         <span v-else>{{ displayAuthors }}</span>
         <span> 创作</span>
-        <span v-if="attrs?.copyright?.license">
+        <span v-if="attrs?.copyright?.org">
+          ，{{ attrs.copyright.org }} 在
+          <a v-if="attrs?.copyright?.licenseUrl" :href="attrs.copyright.licenseUrl">{{ attrs.copyright.license }}</a>
+          <span v-else>{{ attrs.copyright.license }}</span>
+          许可下使用
+        </span>
+        <span v-else-if="orgName">
+          ，{{ orgName }} 在
+          <a v-if="attrs?.copyright?.licenseUrl" :href="attrs.copyright.licenseUrl">{{ attrs.copyright.license }}</a>
+          <span v-else>{{ attrs.copyright.license }}</span>
+          许可下使用
+        </span>
+        <span v-else-if="attrs?.copyright?.license">
           ，Project Trans 在 
           <a v-if="attrs?.copyright?.licenseUrl" :href="attrs.copyright.licenseUrl">{{ attrs.copyright.license }}</a>
           <span v-else>{{ attrs.copyright.license }}</span>
