@@ -44,3 +44,12 @@ export default {
   extends: PtjsTheme,
 }
 ```
+
+## 调试说明
+
+1. 修改文件后在仓库根目录下进行构建
+    - `pnpm i`
+    - `pnpm build`
+2. 切换到 example 路径下预览
+    - `cd example`
+    - `pnpm dev`
