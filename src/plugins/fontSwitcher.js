@@ -6,7 +6,9 @@ export const fontMap = {
   '新晰黑 Code': 'NeoXiHei Code',
   '系统字体': 'system-ui',
   '更纱黑体': 'Sarasa UI CL',
-  '思源宋体': 'Source Han Serif CN'
+  '思源宋体': 'Source Han Serif CN',
+  '黑体': 'font-family sans',
+  '宋体': 'serif',
 };
 
 // 字体切换函数

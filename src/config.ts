@@ -67,6 +67,14 @@ function genConfig() {
       text: "切换字体",
       items: [
         {
+          text: "黑体",
+          link: "#",
+        },
+        {
+          text: "宋体",
+          link: "#",
+        },
+        {
           text: "更纱黑体",
           link: "#",
         },
@@ -91,7 +99,7 @@ function genConfig() {
           link: "#",
         },
         {
-          text: "系统字体",
+          text: "默认字体",
           link: "#",
         },
       ],
