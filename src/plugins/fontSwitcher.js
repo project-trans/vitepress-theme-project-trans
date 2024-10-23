@@ -7,7 +7,7 @@ export const fontMap = {
   '系统字体': 'system-ui',
   '更纱黑体': 'Sarasa UI CL',
   '思源宋体': 'Source Han Serif CN',
-  '黑体': 'font-family sans',
+  '黑体': 'sans',
   '宋体': 'serif',
 };
 
