@@ -4,7 +4,29 @@ import type { ThemeContext } from '@project-trans/vitepress-theme-project-trans/
 import { withThemeContext } from '@project-trans/vitepress-theme-project-trans/utils'
 import type { DefaultTheme } from 'vitepress'
 
-const nav: DefaultTheme.NavItem[] = []
+const nav: NavConfig = [
+  {
+    text: "大学指南",
+    link: "/campus/",
+  },
+  {
+    text: "贡献指南",
+    items: [
+      {
+        text: "校园版块投稿指南",
+        link: "/contributor-guide/campus.md",
+      },
+      {
+        text: "其他投稿指南",
+        link: "/contributor-guide/other.md",
+      },
+      {
+        text: "校园版块贡献模板",
+        link: "/contributor-guide/CampusTemplate.md",
+      },
+    ],
+  },
+];
 
 const baseConfig = {
   useTitleFromFrontmatter: true,

@@ -62,6 +62,26 @@ function genConfig() {
     sitePattern,
     org,
   } = themeConfig
+  const additionalNav = [
+    {
+      text: "切换字体",
+      items: [
+        {
+          text: "更纱黑体",
+          link: "#",
+        },
+        {
+          text: "思源宋体",
+          link: "#",
+        },
+        {
+          text: "系统字体",
+          link: "#",
+        },
+      ],
+    },
+  ];
+  const combinedNav = [...nav, ...additionalNav];
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
     title: siteTitle,
@@ -113,7 +133,7 @@ function genConfig() {
       // https://vitepress.dev/reference/default-theme-config
       siteTitle: SiteTitle,
       logo: siteLogo,
-      nav,
+      nav: combinedNav,
       sidebar: generateSidebar(),
       socialLinks: [{ icon: 'github', link: githubRepoLink }],
       editLink: {

@@ -1,0 +1,30 @@
+/* @font-face {
+    font-family: '霞鹜文楷';
+    src: url('./fonts/LXGWWenKai-Regular.ttf') format('truetype');
+  }
+@font-face {
+    font-family: '霞鹜文楷-等宽';
+    src: url('./fonts/LXGWWenKaiMono-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: '霞鹜新晰黑';
+    src: url('./fonts/LXGWNeoXiHei.ttf') format('truetype');
+}
+@font-face {
+    font-family: '霞鹜新晰黑-等宽';
+    src: url('./fonts/NeoXiHeiCode-Regular.ttf') format('truetype');
+} */
+@font-face {
+    font-family: '更纱黑体';
+    src: url('./fonts/SarasaUiCL-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: '思源宋体';
+    src: url('./fonts/SourceHanSerifCN-Regular.otf') format('truetype');
+}
+
+:root {
+    --vp-font-family-base: var(--main-font, system-ui) !important;/* 文本字体 */
+    --vp-font-family-mono: var(--main-font, system-ui) !important;/* 代码字体 */
+}
+  
