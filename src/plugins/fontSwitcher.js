@@ -1,12 +1,12 @@
 export const fontMap = {
   // 字体映射表
-  '霞鹜文楷': '霞鹜文楷',
-  '霞鹜文楷-等宽': '霞鹜文楷-等宽',
-  '霞鹜新晰黑': '霞鹜新晰黑',
-  '霞鹜新晰黑-等宽': '霞鹜新晰黑-等宽',
+  '霞鹜文楷': 'LXGW WenKai',
+  '霞鹜文楷 Mono': 'LXGW WenKai Mono',
+  '霞鹜新晰黑': 'LXGW Neo XiHei',
+  '新晰黑 Code': 'NeoXiHei Code',
   '系统字体': 'system-ui',
-  '更纱黑体': '更纱黑体',
-  '思源宋体': '思源宋体'
+  '更纱黑体': 'Sarasa UI CL',
+  '思源宋体': 'Source Han Serif CN'
 };
 
 // 字体切换函数

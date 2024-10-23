@@ -75,6 +75,22 @@ function genConfig() {
           link: "#",
         },
         {
+          text: "霞鹜文楷",
+          link: "#",
+        },
+        {
+          text: "霞鹜文楷 Mono",
+          link: "#",
+        },
+        {
+          text: "霞鹜新晰黑",
+          link: "#",
+        },
+        {
+          text: "新晰黑 Code",
+          link: "#",
+        },
+        {
           text: "系统字体",
           link: "#",
         },
