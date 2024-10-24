@@ -4,7 +4,7 @@ export const fontMap = {
   '霞鹜文楷 Mono': 'LXGW WenKai Mono',
   '霞鹜新晰黑': 'LXGW Neo XiHei',
   '新晰黑 Code': 'NeoXiHei Code',
-  '默认字体': ' ',
+  '默认字体': '',
   '更纱黑体': 'Sarasa UI SC',
   '思源宋体': 'Source Han Serif CN',
   '黑体': 'sans',
