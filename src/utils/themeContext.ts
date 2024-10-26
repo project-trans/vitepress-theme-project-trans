@@ -19,9 +19,9 @@ export interface ThemeContext {
   enableChangeLog?: boolean
   sitePattern?: string
   org?: string
-  HideReadingTime?: string
-  HideLastUpdated?: string
-  HideAuthors?: string
+  HideReadingTime?: boolean
+  HideLastUpdated?: boolean
+  HideAuthors?: boolean
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
