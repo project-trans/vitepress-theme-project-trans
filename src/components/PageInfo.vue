@@ -52,19 +52,19 @@ const displayAuthors = computed(() => {
 
 <template>
   <div class="mb-10 mt-4 flex flex-wrap gap-4">
-    <div class="inline-flex items-center gap-1">
+    <div v-if="!theme.HideAuthors" class="inline-flex items-center gap-1">
       <span class="i-octicon:person" />
       <span>作者:</span>
       <span>{{ displayAuthors }}</span>
     </div>
 
-    <div class="inline-flex items-center gap-1">
+    <div v-if="!theme.HideLastUpdated" class="inline-flex items-center gap-1">
       <span class="i-octicon:calendar-16" />
       <span>{{ theme.lastUpdated?.text || 'Last updated' }}:</span>
       <time :datetime="isoDatetime">{{ datetime }}</time>
     </div>
     <ClientOnly>
-      <ReadingTime /> <!-- 添加 ReadingTime 组件 -->
+      <ReadingTime v-if="!theme.HideReadingTime" /> <!-- 添加 ReadingTime 组件 -->
     </ClientOnly>
   </div>
 </template>

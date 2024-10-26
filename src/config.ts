@@ -1,8 +1,9 @@
+import type { DefaultTheme } from 'vitepress'
 import fs from 'node:fs'
 import path, { dirname, resolve } from 'node:path'
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
 
+import { fileURLToPath } from 'node:url'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import { transformHeadMeta } from '@nolebase/vitepress-plugin-meta'
 import footnote from 'markdown-it-footnote'
@@ -10,7 +11,6 @@ import katex from 'markdown-it-katex'
 import mdPangu from 'markdown-it-pangu'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import type { DefaultTheme } from 'vitepress'
 import { defineConfigWithTheme } from 'vitepress'
 
 import { generateSidebar } from './sidebar'
@@ -61,51 +61,54 @@ function genConfig() {
     enableSuggestionBox = true,
     sitePattern,
     org,
+    HideReadingTime,
+    HideLastUpdated,
+    HideAuthors,
   } = themeConfig
   const additionalNav = [
     {
-      text: "切换字体",
+      text: '切换字体',
       items: [
         {
-          text: "黑体",
-          link: "#",
+          text: '黑体',
+          link: '#',
         },
         {
-          text: "宋体",
-          link: "#",
+          text: '宋体',
+          link: '#',
         },
         {
-          text: "更纱黑体",
-          link: "#",
+          text: '更纱黑体',
+          link: '#',
         },
         {
-          text: "思源宋体",
-          link: "#",
+          text: '思源宋体',
+          link: '#',
         },
         {
-          text: "霞鹜文楷",
-          link: "#",
+          text: '霞鹜文楷',
+          link: '#',
         },
         {
-          text: "霞鹜文楷 Mono",
-          link: "#",
+          text: '霞鹜文楷 Mono',
+          link: '#',
         },
         {
-          text: "霞鹜新晰黑",
-          link: "#",
+          text: '霞鹜新晰黑',
+          link: '#',
         },
         {
-          text: "新晰黑 Code",
-          link: "#",
+          text: '新晰黑 Code',
+          link: '#',
         },
         {
-          text: "默认字体",
-          link: "#",
+          text: '默认字体',
+          link: '#',
         },
       ],
     },
-  ];
-  const combinedNav = [...nav, ...additionalNav];
+  ]
+  const combinedNav = [...nav, ...additionalNav]
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
     title: siteTitle,
@@ -152,6 +155,9 @@ function genConfig() {
     ],
     themeConfig: {
       org,
+      HideReadingTime,
+      HideLastUpdated,
+      HideAuthors,
       enableSuggestionBox,
       enableChangeLog,
       // https://vitepress.dev/reference/default-theme-config

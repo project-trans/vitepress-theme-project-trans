@@ -1,6 +1,6 @@
-import { AsyncLocalStorage } from 'node:async_hooks'
 import type { DefaultTheme } from 'vitepress'
 import type { generateSidebar, VitePressSidebarOptions } from 'vitepress-sidebar'
+import { AsyncLocalStorage } from 'node:async_hooks'
 
 type NavConfig = DefaultTheme.Config['nav']
 
@@ -19,6 +19,9 @@ export interface ThemeContext {
   enableChangeLog?: boolean
   sitePattern?: string
   org?: string
+  HideReadingTime?: string
+  HideLastUpdated?: string
+  HideAuthors?: string
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
