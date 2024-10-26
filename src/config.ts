@@ -64,6 +64,7 @@ function genConfig() {
     HideReadingTime,
     HideLastUpdated,
     HideAuthors,
+    rootDir,
   } = themeConfig
   const additionalNav = [
     {
@@ -278,7 +279,7 @@ function genConfig() {
     transformPageData(pageData) {
       // 构建 Markdown 文件路径
       const markdownFile = `${pageData.relativePath}`
-      const filePath = path.join(process.cwd(), 'docs', markdownFile)
+      const filePath = path.join(process.cwd(), `${rootDir}`, markdownFile)
 
       // 从文件系统读取文件内容
       const content = readMarkdownFileContent(filePath)
