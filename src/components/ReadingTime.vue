@@ -23,8 +23,15 @@ watch(() => frontmatter.value, (newFrontmatter) => {
 </script>
 
 <template>
-  <div>
-    <p>字数: {{ wordCount }} &nbsp; 预计阅读时间: {{ readingTime }} 分钟</p>
+  <div class="inline-flex items-center gap-4">
+    <div class="inline-flex items-center gap-1">
+      <span class="i-octicon:pencil-16" />
+      <span>字数: {{ wordCount }} </span>
+    </div>
+    <div class="inline-flex items-center gap-1">
+      <span class="i-octicon:book-16" />
+      <span>预计阅读时间: {{ readingTime }} 分钟</span>
+    </div>
   </div>
 </template>
 
