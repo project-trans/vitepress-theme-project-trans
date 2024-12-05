@@ -22,6 +22,7 @@ export interface ThemeContext {
   HideReadingTime?: boolean
   HideLastUpdated?: boolean
   HideAuthors?: boolean
+  hostName: string
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()

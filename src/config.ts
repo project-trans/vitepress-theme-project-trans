@@ -65,6 +65,7 @@ function genConfig() {
     HideLastUpdated,
     HideAuthors,
     rootDir,
+    hostName,
   } = themeConfig
   const additionalNav = [
     {
@@ -114,6 +115,9 @@ function genConfig() {
     lang: 'zh-CN',
     title: siteTitle,
     base: baseUrl,
+    sitemap: {
+      hostname: hostName,
+    },
     cleanUrls: true,
     markdown: {
       config(md) {
@@ -164,6 +168,9 @@ function genConfig() {
       // https://vitepress.dev/reference/default-theme-config
       siteTitle: SiteTitle,
       logo: siteLogo,
+      sitemap: {
+        hostname: hostName,
+      },
       nav: combinedNav,
       sidebar: generateSidebar(),
       socialLinks: [{ icon: 'github', link: githubRepoLink }],
