@@ -12,7 +12,7 @@ import DefaultTheme from 'vitepress/theme-without-fonts'
 import { onMounted } from 'vue'
 
 import Layout from './Layout.vue'
-import { addFontSwitchListener } from './plugins/fontSwitcher.js'
+import { addFontSwitchListener } from './plugins/fontSwitcher'
 import './style.css'
 
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'

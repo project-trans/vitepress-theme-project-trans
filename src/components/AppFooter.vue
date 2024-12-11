@@ -10,7 +10,7 @@ const { theme } = useData<PjtsThemeConfig>()
 
 // 定义一个 ref 来存储动态 key
 const componentKey = ref(0)
-const frontmatter = ref<Record<string, any>>({})
+const frontmatter = ref(route.data?.frontmatter)
 const isFrontmatterLoaded = ref(false)
 
 // 更新 key 和 frontmatter 的函数

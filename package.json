@@ -38,9 +38,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "vitepress dev",
-    "preview": "vitepress preview"
+    "build": "unbuild"
   },
   "peerDependencies": {
     "@iconify-json/carbon": "^1.2.1",
