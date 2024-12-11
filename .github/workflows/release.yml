@@ -1,5 +1,8 @@
 name: 发包到 NPM
 
+permissions:
+  id-token: write # For NPM Provenance, see https://docs.npmjs.com/generating-provenance-statements
+
 on:
   push:
     branches:
@@ -46,13 +49,13 @@ jobs:
         if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'release')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
-        run: pnpm publish --tag prerelease --access public --no-git-checks
+        run: pnpm publish --tag prerelease --access public --no-git-checks --provenance
 
       - name: 发布到 NPM（使用 tag 的正式版本发布）
         if: startsWith(github.ref, 'refs/tags/')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # 使用 NPM 的认证 token
-        run: pnpm publish --access public --no-git-checks
+        run: pnpm publish --access public --no-git-checks --provenance
 
       - name: 设置发布类型为正式或预发布
         id: set_release_type
