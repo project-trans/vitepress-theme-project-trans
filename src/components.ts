@@ -8,9 +8,9 @@ import PageInfo from './components/PageInfo.vue'
 import ReadingTime from './components/ReadingTime.vue'
 
 export {
+  AppearanceToggle,
   AppFooter,
   AppSBox,
-  AppearanceToggle,
   ArticlesMenu,
   CopyrightInfo,
   HomeContent,

@@ -9,10 +9,10 @@ export const fontMap = {
   '思源宋体': 'Source Han Serif CN',
   '黑体': 'sans',
   '宋体': 'serif',
-}
+} as const
 
 // 字体切换函数
-export function switchFont(font) {
+export function switchFont(font: keyof typeof fontMap) {
   document.documentElement.style.setProperty('--main-font', fontMap[font])
 }
 
@@ -27,9 +27,9 @@ export function addFontSwitchListener() {
     item.addEventListener('click', (e) => {
       e.preventDefault()
       const target = e.target
-      const selectedFont = target.textContent // 获取点击的字体名称
+      const selectedFont = (target as HTMLAnchorElement).textContent // 获取点击的字体名称
       // console.log(`${selectedFont}`);
-      switchFont(selectedFont) // 切换字体
+      switchFont(selectedFont as keyof typeof fontMap) // 切换字体
     })
   })
 
@@ -44,9 +44,9 @@ export function addFontSwitchListener() {
         item.addEventListener('click', (e) => {
           e.preventDefault()
           const target = e.target
-          const selectedFont = target.textContent // 获取点击的字体名称
+          const selectedFont = (target as HTMLAnchorElement).textContent // 获取点击的字体名称
           // console.log(`${selectedFont}`);
-          switchFont(selectedFont) // 切换字体
+          switchFont(selectedFont as keyof typeof fontMap) // 切换字体
         })
       })
     })

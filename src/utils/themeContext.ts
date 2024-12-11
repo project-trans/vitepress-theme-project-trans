@@ -1,5 +1,5 @@
 import type { DefaultTheme } from 'vitepress'
-import type { generateSidebar, VitePressSidebarOptions } from 'vitepress-sidebar'
+import type { VitePressSidebarOptions } from 'vitepress-sidebar'
 import { AsyncLocalStorage } from 'node:async_hooks'
 
 type NavConfig = DefaultTheme.Config['nav']

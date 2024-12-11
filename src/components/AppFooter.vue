@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import type { PjtsThemeConfig } from '../config'
 import { NolebaseGitChangelog } from '@nolebase/vitepress-plugin-git-changelog/client'
 import { useData, useRoute } from 'vitepress'
 import { ref, watch } from 'vue'
 import { AppSBox } from '../components'
-import type { PjtsThemeConfig } from '../config'
 
 const route = useRoute()
 const { theme } = useData<PjtsThemeConfig>()
 
 // 定义一个 ref 来存储动态 key
 const componentKey = ref(0)
-const frontmatter = ref({})
+const frontmatter = ref<Record<string, any>>({})
 const isFrontmatterLoaded = ref(false)
 
 // 更新 key 和 frontmatter 的函数

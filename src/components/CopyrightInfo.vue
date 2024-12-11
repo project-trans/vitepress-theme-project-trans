@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { useRoute } from 'vitepress' // 获取路由信息
 import type { Node, Trie } from '../plugins/CopyrightLoader.data'
+import { useData, useRoute } from 'vitepress' // 获取路由信息
+import { computed, ref, watch } from 'vue'
 import { data } from '../plugins/CopyrightLoader.data'
-import { useData } from 'vitepress';
-const orgName = useData().theme.value.org;
 
+const orgName = useData().theme.value.org
 
 // 初始化需要更新的变量
 const attrs = ref<Record<string, any> | null>(null)
@@ -13,7 +12,7 @@ const attrs = ref<Record<string, any> | null>(null)
 const route = useRoute() // 获取当前路由对象
 
 // 定义一个函数，基于当前路由路径更新数据
-const updateData = () => {
+function updateData() {
   const paths = route.path.replace('.md', '').split('/').filter((item: string) => item !== '')
   attrs.value = searchClosestInTrie(data, paths)
 }
@@ -23,10 +22,12 @@ function searchClosestInTrie(
   path: string[],
   node: Node<Record<string, any>> = that.root,
 ): Record<string, any> | null {
-  if (path.length === 0) return node.value
+  if (path.length === 0)
+    return node.value
   if (path[0] in node.children) {
     let value = searchClosestInTrie(that, path.slice(1), node.children[path[0]])
-    if (value === null) value = node.value
+    if (value === null)
+      value = node.value
     return value
   }
   return node.value
@@ -51,17 +52,19 @@ watch(
   () => {
     updateData() // 路由变化时调用更新逻辑
   },
-  { immediate: true } // 确保在初次加载时也能更新数据
+  { immediate: true }, // 确保在初次加载时也能更新数据
 )
 </script>
 
 <template>
   <div v-if="attrs?.copyright?.enable ?? false">
     <div class="tip custom-block">
-      <p class="custom-block-title">Copyright</p>
+      <p class="custom-block-title">
+        Copyright
+      </p>
       <p>
         <span>这篇文章 </span>
-        <span>{{ `“${attrs.title}”` }}</span>
+        <span>{{ `“${attrs!.title}”` }}</span>
         <span> 由 </span>
         <a v-if="attrs?.copyright?.url" :href="attrs.copyright.url">{{ displayAuthors }}</a>
         <span v-else>{{ displayAuthors }}</span>
@@ -79,7 +82,7 @@ watch(
           许可下使用
         </span>
         <span v-else-if="attrs?.copyright?.license">
-          ，Project Trans 在 
+          ，Project Trans 在
           <a v-if="attrs?.copyright?.licenseUrl" :href="attrs.copyright.licenseUrl">{{ attrs.copyright.license }}</a>
           <span v-else>{{ attrs.copyright.license }}</span>
           许可下使用

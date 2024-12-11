@@ -1,6 +1,5 @@
 import type { SidebarOptions } from '@project-trans/vitepress-theme-project-trans/theme'
 import type { ThemeContext } from '@project-trans/vitepress-theme-project-trans/utils'
-import type { DefaultTheme } from 'vitepress'
 import genConfig from '@project-trans/vitepress-theme-project-trans/config'
 import { withThemeContext } from '@project-trans/vitepress-theme-project-trans/utils'
 
