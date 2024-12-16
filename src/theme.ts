@@ -1,5 +1,5 @@
 import type { Theme } from 'vitepress'
-import type Options from 'vitepress-sidebar'
+import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 // https://vitepress.dev/guide/custom-theme
 import {
   NolebaseEnhancedReadabilitiesPlugin,
@@ -20,7 +20,7 @@ import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'
 import '@nolebase/vitepress-plugin-git-changelog/client/style.css'
 import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
 
-export type SidebarOptions = Options
+export type SidebarOptions = VitePressSidebarOptions
 
 export default {
   extends: DefaultTheme,

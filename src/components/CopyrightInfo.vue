@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Node, Trie } from '../plugins/CopyrightLoader.data'
 import { useData, useRoute } from 'vitepress' // 获取路由信息
-import { computed, ref, watch } from 'vue'
+import { computed } from 'vue'
 import { data } from '../plugins/CopyrightLoader.data'
 
 const orgName = useData().theme.value.org

@@ -2,7 +2,7 @@ import type {
   SidebarItem,
   SidebarMultiItem,
   VitePressSidebarOptions,
-} from 'vitepress-sidebar'
+} from 'vitepress-sidebar/types'
 import { generateSidebar as genSidebar } from 'vitepress-sidebar'
 import { useThemeContext } from './utils/themeContext'
 

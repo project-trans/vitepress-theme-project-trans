@@ -19,6 +19,13 @@ import { useThemeContext } from './utils/themeContext'
 export interface PjtsThemeConfig extends DefaultTheme.Config {
   enableChangeLog?: boolean
   enableSuggestionBox?: boolean
+  org?: string
+  HideReadingTime?: boolean
+  HideLastUpdated?: boolean
+  HideAuthors?: boolean
+  sitemap?: {
+    hostname: string
+  }
 }
 
 // 从文件系统读取 Markdown 文件内容

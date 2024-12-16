@@ -1,8 +1,8 @@
 import type { DefaultTheme } from 'vitepress'
-import type { VitePressSidebarOptions } from 'vitepress-sidebar'
+import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 import { AsyncLocalStorage } from 'node:async_hooks'
 
-type NavConfig = DefaultTheme.Config['nav']
+type NavConfig = DefaultTheme.NavItem[]
 
 export interface ThemeContext {
   siteTitle: string
