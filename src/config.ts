@@ -6,6 +6,7 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import { transformHeadMeta } from '@nolebase/vitepress-plugin-meta'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import footnote from 'markdown-it-footnote'
 import katex from 'markdown-it-katex'
 import mdPangu from 'markdown-it-pangu'
@@ -74,50 +75,7 @@ function genConfig() {
     rootDir,
     hostName,
   } = themeConfig
-  const additionalNav = [
-    {
-      text: '切换字体',
-      items: [
-        {
-          text: '黑体',
-          link: '#',
-        },
-        {
-          text: '宋体',
-          link: '#',
-        },
-        {
-          text: '更纱黑体',
-          link: '#',
-        },
-        {
-          text: '思源宋体',
-          link: '#',
-        },
-        {
-          text: '霞鹜文楷',
-          link: '#',
-        },
-        {
-          text: '霞鹜文楷 Mono',
-          link: '#',
-        },
-        {
-          text: '霞鹜新晰黑',
-          link: '#',
-        },
-        {
-          text: '新晰黑 Code',
-          link: '#',
-        },
-        {
-          text: '默认字体',
-          link: '#',
-        },
-      ],
-    },
-  ]
-  const combinedNav = [...nav, ...additionalNav]
+
   return defineConfigWithTheme<PjtsThemeConfig>({
     lang: 'zh-CN',
     title: siteTitle,
@@ -178,7 +136,7 @@ function genConfig() {
       sitemap: {
         hostname: hostName,
       },
-      nav: combinedNav,
+      nav,
       sidebar: generateSidebar(),
       socialLinks: [{ icon: 'github', link: githubRepoLink }],
       editLink: {
@@ -281,6 +239,7 @@ function genConfig() {
           dts: './.vitepress/components.d.ts',
           transformer: 'vue3',
         }),
+        vueJsx(),
         UnoCSS(),
       ],
       ssr: {

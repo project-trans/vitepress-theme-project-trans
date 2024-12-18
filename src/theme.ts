@@ -12,7 +12,6 @@ import DefaultTheme from 'vitepress/theme-without-fonts'
 import { onMounted } from 'vue'
 
 import Layout from './Layout.vue'
-import { addFontSwitchListener } from './plugins/fontSwitcher'
 import './style.css'
 
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'
@@ -38,11 +37,6 @@ export default {
           lastEditedDateFnsLocaleName: 'zhCN',
         },
       },
-    })
-  },
-  setup() {
-    onMounted(() => {
-      addFontSwitchListener() // 添加字体切换的事件监听器
     })
   },
 } satisfies Theme

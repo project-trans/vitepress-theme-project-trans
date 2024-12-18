@@ -11,6 +11,7 @@ import DefaultTheme from 'vitepress/theme'
 import AppearanceToggle from './components/AppearanceToggle.vue'
 import AppFooter from './components/AppFooter.vue'
 import CopyrightInfo from './components/CopyrightInfo.vue'
+import FontSwitcher from './components/FontSwitcher/FontSwitcher.vue'
 import PageInfo from './components/PageInfo.vue'
 
 const { Layout } = DefaultTheme
@@ -33,6 +34,7 @@ const { frontmatter } = useData()
       </template>
       <template #nav-bar-content-after>
         <NolebaseEnhancedReadabilitiesMenu />
+        <FontSwitcher />
       </template>
       <template #nav-screen-content-after>
         <NolebaseEnhancedReadabilitiesScreenMenu />
