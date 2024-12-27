@@ -23,6 +23,7 @@ export interface ThemeContext {
   HideLastUpdated?: boolean
   HideAuthors?: boolean
   hostName: string
+  fontsBaseUrl?: string
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()

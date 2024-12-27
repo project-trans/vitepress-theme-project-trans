@@ -1,62 +1,53 @@
 <script setup lang="tsx">
-import { useStorage } from '@vueuse/core'
+import type { PjtsThemeConfig } from '../../config'
+import { useFetch, useStorage } from '@vueuse/core'
+import { useData } from 'vitepress'
 import VPFlyout from 'vitepress/dist/client/theme-default/components/VPFlyout.vue'
-import { watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import FontSwitcherItem from './FontSwitcherItem.vue'
+
+const { theme } = useData<PjtsThemeConfig>()
+
+const fontsBaseUrl = computed(() => theme.value.fontsBaseUrl)
+
+const { data: fonts } = useFetch<Record<string, { paths: string[], fontFamily: string }>>(
+  `${fontsBaseUrl.value}/path_map.json`,
+).json()
 
 const activeFont = useStorage('activeFont', '')
 
 watchEffect(() => {
+  if (!fonts.value)
+    return
+  if (!fonts.value[activeFont.value]) {
+    activeFont.value = '默认字体'
+  }
   document.documentElement.style.setProperty(
     '--main-font',
-    activeFont.value,
+    fonts.value[activeFont.value].fontFamily,
   )
 })
 
-const items = [
-  {
-    name: '黑体',
-    value: 'sans',
-  },
-  {
-    name: '宋体',
-    value: 'serif',
-  },
-  {
-    name: '更纱黑体',
-    value: 'Sarasa UI SC',
-  },
-  {
-    name: '思源宋体',
-    value: 'Source Han Serif CN',
-  },
-  {
-    name: '霞鹜文楷',
-    value: 'LXGW WenKai',
-  },
-  {
-    name: '霞鹜文楷 Mono',
-    value: 'LXGW WenKai Mono',
-  },
-  {
-    name: '霞鹜新晰黑',
-    value: 'LXGW Neo XiHei',
-  },
-  {
-    name: '新晰黑 Code',
-    value: 'NeoXiHei Code',
-  },
-  {
-    name: '默认字体',
-    value: '',
-  },
-].map(item => ({
-  component: <FontSwitcherItem fontName={item.name} value={item.value} />,
-}))
+const items = computed(() => {
+  if (!fonts.value)
+    return []
+  return Object.entries(fonts.value).map(([displayName]) => ({
+    component: <FontSwitcherItem fontName={displayName} />,
+  }))
+})
 </script>
 
 <template>
   <VPFlyout icon="i-octicon:typography-16" :items="items" />
+  <template v-if="fonts && fonts[activeFont]">
+    <link
+      v-for="css in fonts[activeFont].paths"
+      :key="css"
+      rel="stylesheet"
+      as="style"
+      :href="`${fontsBaseUrl}/${css}/result.css`"
+    >
+  </template>
 </template>
 
 <style lang="css" scoped>

@@ -27,6 +27,7 @@ export interface PjtsThemeConfig extends DefaultTheme.Config {
   sitemap?: {
     hostname: string
   }
+  fontsBaseUrl: string
 }
 
 // 从文件系统读取 Markdown 文件内容
@@ -74,6 +75,7 @@ function genConfig() {
     HideAuthors,
     rootDir,
     hostName,
+    fontsBaseUrl = 'https://fonts.project-trans.org',
   } = themeConfig
 
   return defineConfigWithTheme<PjtsThemeConfig>({
@@ -193,6 +195,7 @@ function genConfig() {
           },
         },
       },
+      fontsBaseUrl,
     },
     transformHead: async (context) => {
       let head = [...context.head]
