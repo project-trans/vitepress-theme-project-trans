@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
 
-defineProps<{ fontName: string, value: string }>()
+defineProps<{ fontName: string }>()
 const activeFont = useStorage('activeFont', '')
 </script>
 
 <template>
-  <div class="VPMenuLink" @click="activeFont = value">
-    <span class="link" :class="[activeFont === value && 'active']">{{ fontName }}</span>
+  <div class="VPMenuLink" @click="activeFont = fontName">
+    <span class="link" :class="[activeFont === fontName && 'active']">{{ fontName }}</span>
   </div>
 </template>
 
