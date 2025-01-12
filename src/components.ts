@@ -6,7 +6,7 @@ import CopyrightInfo from './components/CopyrightInfo.vue'
 import HomeContent from './components/HomeContent.vue'
 import PageInfo from './components/PageInfo.vue'
 import ReadingTime from './components/ReadingTime.vue'
-
+import Xgplayer from './components/xgplayer.vue'
 export {
   AppearanceToggle,
   AppFooter,
@@ -16,4 +16,5 @@ export {
   HomeContent,
   PageInfo,
   ReadingTime,
+  Xgplayer,
 }

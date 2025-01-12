@@ -61,7 +61,8 @@
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-pangu": "^1.0.2",
-    "unplugin-vue-components": "^0.28.0"
+    "unplugin-vue-components": "^0.28.0",
+    "xgplayer": "^3.0.20"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.0",
