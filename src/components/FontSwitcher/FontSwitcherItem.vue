@@ -7,12 +7,16 @@ const activeFont = useStorage('activeFont', '')
 
 <template>
   <div class="VPMenuLink" @click="activeFont = fontName">
-    <span class="link" :class="[activeFont === fontName && 'active']">{{ fontName }}</span>
+    <button class="link" :class="[activeFont === fontName && 'active']">
+      {{ fontName }}
+    </button>
   </div>
 </template>
 
 <style lang="css" scoped>
 .link {
+  width: 100%;
+  text-align: left;
   display: block;
   border-radius: 6px;
   padding: 0 12px;
@@ -33,5 +37,7 @@ const activeFont = useStorage('activeFont', '')
 
 .link.active {
   color: var(--vp-c-brand-1);
+  background-color: unset;
+  cursor: default;
 }
 </style>
