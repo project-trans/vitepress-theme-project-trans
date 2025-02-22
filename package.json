@@ -57,21 +57,22 @@
     "@nolebase/vitepress-plugin-git-changelog": "^2.14.0",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.14.0",
     "@nolebase/vitepress-plugin-meta": "^2.14.0",
-    "@project-trans/suggestion-box": "^0.4.3",
+    "@project-trans/suggestion-box": "^0.5.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-katex": "^2.0.3",
-    "markdown-it-pangu": "^1.0.2",
-    "unplugin-vue-components": "^28.2.0"
+    "markdown-it-pangu": "^1.0.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.3.0",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@unocss/eslint-plugin": "^66.0.0",
-    "eslint": "^9.20.1",
+    "eslint": "^9.21.0",
     "eslint-plugin-format": "^1.0.1",
+    "typescript": "^5.7.3",
     "unbuild": "3.3.1",
+    "unplugin-vue-components": "^28.4.0",
     "vue-tsc": "^2.2.2"
   },
   "pnpm": {
