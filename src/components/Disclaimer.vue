@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import type { PjtsThemeConfig, DisclaimerPathConfig } from '../config'
+import type { PjtsThemeConfig } from '../config'
+import { DisclaimerPathConfig } from '../utils/themeContext';
 
 const props = defineProps<{
   content?: string
