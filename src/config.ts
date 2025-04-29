@@ -15,11 +15,20 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfigWithTheme } from 'vitepress'
 
 import { generateSidebar } from './sidebar'
-import { useThemeContext } from './utils/themeContext'
+import { useThemeContext, DisclaimerPathConfig } from './utils/themeContext'
+
 
 export interface PjtsThemeConfig extends DefaultTheme.Config {
   enableChangeLog?: boolean
   enableSuggestionBox?: boolean
+  enableDisclaimer?: boolean
+  disclaimerPaths?: DisclaimerPathConfig[]
+  disclaimerSummaryHtml?: string
+  disclaimerDetailHtml?: string
+  disclaimerToggleExpandText?: string
+  disclaimerToggleCollapseText?: string
+  disclaimerHideText?: string
+  disclaimerShowText?: string
   org?: string
   HideReadingTime?: boolean
   HideLastUpdated?: boolean
@@ -76,6 +85,8 @@ function genConfig() {
     rootDir,
     hostName,
     fontsBaseUrl = 'https://fonts.project-trans.org',
+    enableDisclaimer,
+    disclaimerPaths,
   } = themeConfig
 
   return defineConfigWithTheme<PjtsThemeConfig>({
@@ -145,6 +156,8 @@ function genConfig() {
         pattern: `${githubRepoLink}/edit/main/${sitePattern}/:path`,
         text: '在 GitHub 上编辑此页面', // label localization
       },
+      enableDisclaimer: enableDisclaimer,
+      disclaimerPaths: disclaimerPaths,
       // label localization
       outline: { label: '本页大纲', level: 'deep' },
       lastUpdated: { text: '最后更新' },

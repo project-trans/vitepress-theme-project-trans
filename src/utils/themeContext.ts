@@ -4,6 +4,13 @@ import { AsyncLocalStorage } from 'node:async_hooks'
 
 type NavConfig = DefaultTheme.NavItem[]
 
+
+export interface DisclaimerPathConfig {
+  path: string; // The path prefix to match
+  summaryHtml: string; // HTML content for the summary view
+  detailHtml?: string; // Optional HTML content for the detailed view
+}
+
 export interface ThemeContext {
   siteTitle: string
   siteLogo: string
@@ -24,6 +31,8 @@ export interface ThemeContext {
   HideAuthors?: boolean
   hostName: string
   fontsBaseUrl?: string
+  enableDisclaimer?: boolean
+  disclaimerPaths?: DisclaimerPathConfig[]
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()

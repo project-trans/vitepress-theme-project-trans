@@ -3,7 +3,7 @@ import type { PjtsThemeConfig } from '../config'
 import { NolebaseGitChangelog } from '@nolebase/vitepress-plugin-git-changelog/client'
 import { useData, useRoute } from 'vitepress'
 import { ref, watch } from 'vue'
-import { AppSBox } from '../components'
+import { AppSBox, Disclaimer } from '../components'
 
 const route = useRoute()
 const { theme } = useData<PjtsThemeConfig>()
@@ -48,5 +48,6 @@ watch(
           && !frontmatter.hideChangelog
       "
     />
+    <Disclaimer />
   </div>
 </template>

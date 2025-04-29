@@ -6,6 +6,7 @@ import CopyrightInfo from './components/CopyrightInfo.vue'
 import HomeContent from './components/HomeContent.vue'
 import PageInfo from './components/PageInfo.vue'
 import ReadingTime from './components/ReadingTime.vue'
+import Disclaimer from './components/Disclaimer.vue'
 
 export {
   AppearanceToggle,
@@ -16,4 +17,5 @@ export {
   HomeContent,
   PageInfo,
   ReadingTime,
+  Disclaimer,
 }

@@ -63,6 +63,16 @@ const themeConfig: ThemeContext = {
   // HideLastUpdated: true, /* 隐藏最后更新时间 */
   // HideAuthors: true, /* 隐藏作者信息 */
   // fontsBaseUrl: 'http://localhost:8788', // For local development with wrangler pages dev
+  disclaimerPaths: [
+    {
+      path: '/campus/',
+      summaryHtml: 'RLE.wiki「大学指南」中的内容，仅供参考。可能存在过时或不准确的信息，请谨慎甄别。',
+      detailHtml: '<p>RLE.wiki「大学指南」中的内容，仅供参考。可能存在过时或不准确的信息，请谨慎甄别。</p>' +
+      '<p>「大学指南」板块中的内容，多数来自于读者投稿，并经编辑简单整理和形式审查后登载，主要体现其投稿者主观观点。不代表 RLE.wiki 编辑团队及我们的任何相关维护人员立场。</p>' +
+      '<p>若存在任何有误或不当内容，请联系 <a href="mailto:rlewiki@project-trans.org">rlewiki@project-trans.org</a>。</p>',
+    },
+  ],
+  enableDisclaimer: true,
 }
 
 // https://vitepress.dev/reference/site-config
