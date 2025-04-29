@@ -130,7 +130,7 @@ watch([isExpanded, currentDisclaimerText], () => {
   >
     <div class="disclaimer-content">
       <!-- Use v-html for rich text content -->
-      <div class="disclaimer-text" :class="{ 'expanded': isExpanded || isHidden }" v-html="currentDisclaimerText"></div>
+      <div class="disclaimer-text" :class="{ 'expanded': isExpanded && !isHidden }" v-html="currentDisclaimerText"></div>
       <div class="disclaimer-actions">
         <button v-if="showToggleButton && !isHidden" @click="isExpanded = !isExpanded" class="disclaimer-toggle">
           {{ isExpanded ? collapseText : expandText }}
@@ -174,13 +174,11 @@ watch([isExpanded, currentDisclaimerText], () => {
   flex: 1;
   font-size: 0.9rem;
   line-height: 1.5;
-  max-height: 3em;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
 }
 
 .disclaimer-text.expanded {
-  max-height: 300px; /* Allow more space for rich content */
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .disclaimer-actions {
