@@ -73,6 +73,7 @@ const themeConfig: ThemeContext = {
     },
   ],
   enableDisclaimer: true,
+  disclaimerStatusKey: 'disclaimerStatus',
 }
 
 // https://vitepress.dev/reference/site-config

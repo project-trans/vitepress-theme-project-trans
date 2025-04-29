@@ -32,7 +32,9 @@ export interface ThemeContext {
   hostName: string
   fontsBaseUrl?: string
   enableDisclaimer?: boolean
-  disclaimerPaths?: DisclaimerPathConfig[]
+  disclaimerPaths?: DisclaimerPathConfig[],
+  disclaimerStatusKey?: string
+  disclaimerStatusExpiration?: number
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()

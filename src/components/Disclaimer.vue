@@ -7,7 +7,7 @@ import { DisclaimerPathConfig } from '../utils/themeContext';
 const props = defineProps<{
   content?: string
 }>()
-
+const DEFAULT_EXPIRATION_MS = 7 * 24 * 60 * 60 * 1000 // 7 days
 const route = useRoute()
 const { theme } = useData<PjtsThemeConfig>()
 
@@ -56,9 +56,9 @@ const shouldRender = computed(() => {
   if (!theme.value?.enableDisclaimer) {
     return false
   }
-//   if (route.data?.frontmatter?.hideDisclaimer) {
-//     return false
-//   }
+  //   if (route.data?.frontmatter?.hideDisclaimer) {
+  //     return false
+  //   }
 
   // Check if a valid configuration is found for the current path
   return !!currentDisclaimerConfig.value
@@ -70,14 +70,22 @@ const placeholderHeight = computed(() => {
   return shouldRender.value && !isHidden.value ? disclaimerHeight.value : 0
 })
 
-// Toggle the hidden state
+// Toggle the hidden state and update local storage with timestamp if enabled
 const toggleHiddenState = () => {
+  const localHiddenEnabled = !!theme.value?.disclaimerStatusKey
+
   if (isHidden.value) {
     // Show the disclaimer
     isHidden.value = false
+    if (localHiddenEnabled) {
+      localStorage.removeItem(theme.value?.disclaimerStatusKey!)
+    }
   } else {
     // Hide the disclaimer
     isHidden.value = true
+    if (localHiddenEnabled) {
+      localStorage.setItem(theme.value?.disclaimerStatusKey!, Date.now().toString())
+    }
   }
 }
 
@@ -89,13 +97,37 @@ const calculateHeight = () => {
     // Only update if the disclaimer is collapsed OR if we haven't captured a height yet.
     // This prevents overwriting the collapsed height when it expands.
     if (!isExpanded.value || disclaimerHeight.value === 0) {
-        disclaimerHeight.value = currentHeight
+      disclaimerHeight.value = currentHeight
     }
   }
   // No need for an else to set height to 0, the computed property handles that.
 }
 
 onMounted(() => {
+  // Check local storage for hidden state if the feature is enabled
+  const localHiddenEnabled = !!theme.value?.disclaimerStatusKey
+  if (localHiddenEnabled) {
+    const storedTimestampStr = localStorage.getItem(theme.value?.disclaimerStatusKey!)
+    if (storedTimestampStr) {
+      try {
+        const storedTimestamp = parseInt(storedTimestampStr, 10)
+        const expirationMs = theme.value?.disclaimerStatusExpiration ?? DEFAULT_EXPIRATION_MS
+        const now = Date.now()
+
+        if (now - storedTimestamp <= expirationMs) {
+          // Timestamp is valid and not expired
+          isHidden.value = true
+        } else {
+          // Timestamp expired, remove it
+          localStorage.removeItem(theme.value?.disclaimerStatusKey!)
+        }
+      }
+      catch {
+        localStorage.removeItem(theme.value?.disclaimerStatusKey!)
+      }
+    }
+  }
+
   // Calculate initial height after component mounts and renders
   nextTick(calculateHeight)
 })
@@ -113,25 +145,19 @@ watch([isExpanded, currentDisclaimerText], () => {
 
 <template>
   <!-- Placeholder div to reserve space when the disclaimer is fixed -->
-  <div
-    v-if="shouldRender && !isHidden"
-    class="disclaimer-placeholder"
-    :style="{ height: placeholderHeight + 'px' }"
-  ></div>
+  <div v-if="shouldRender && !isHidden" class="disclaimer-placeholder" :style="{ height: placeholderHeight + 'px' }">
+  </div>
 
   <!-- The actual disclaimer element -->
-  <div
-    v-if="shouldRender"
-    ref="disclaimerElement"
-    :class="[
-      'disclaimer',
-      { 'is-expanded': isExpanded },
-      { 'is-hidden': isHidden }
-    ]"
-  >
+  <div v-if="shouldRender" ref="disclaimerElement" :class="[
+    'disclaimer',
+    { 'is-expanded': isExpanded },
+    { 'is-hidden': isHidden }
+  ]">
     <div class="disclaimer-content">
       <!-- Use v-html for rich text content -->
-      <div class="disclaimer-text" :class="{ 'expanded': isExpanded && !isHidden }" v-html="currentDisclaimerText"></div>
+      <div class="disclaimer-text" :class="{ 'expanded': isExpanded && !isHidden }" v-html="currentDisclaimerText">
+      </div>
       <div class="disclaimer-actions">
         <button v-if="showToggleButton && !isHidden" @click="isExpanded = !isExpanded" class="disclaimer-toggle">
           {{ isExpanded ? collapseText : expandText }}
@@ -160,6 +186,8 @@ watch([isExpanded, currentDisclaimerText], () => {
 .disclaimer.is-hidden {
   position: static;
   margin-top: 2rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
 }
 
 .disclaimer-content {
@@ -212,7 +240,7 @@ watch([isExpanded, currentDisclaimerText], () => {
   }
 
   .disclaimer-actions {
-    margin-top: 0.5rem; /* Add some space when stacked */
+    margin-top: 0.5rem;
     width: 100%;
     justify-content: flex-end;
   }
@@ -222,8 +250,8 @@ watch([isExpanded, currentDisclaimerText], () => {
 .disclaimer-placeholder {
   position: relative;
   width: 100%;
-  display: block; 
+  display: block;
   margin: 0;
   padding: 0;
 }
-</style> 
+</style>

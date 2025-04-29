@@ -29,6 +29,8 @@ export interface PjtsThemeConfig extends DefaultTheme.Config {
   disclaimerToggleCollapseText?: string
   disclaimerHideText?: string
   disclaimerShowText?: string
+  disclaimerStatusKey?: string
+  disclaimerStatusExpiration?: number
   org?: string
   HideReadingTime?: boolean
   HideLastUpdated?: boolean
@@ -87,6 +89,8 @@ function genConfig() {
     fontsBaseUrl = 'https://fonts.project-trans.org',
     enableDisclaimer,
     disclaimerPaths,
+    disclaimerStatusKey,
+    disclaimerStatusExpiration,
   } = themeConfig
 
   return defineConfigWithTheme<PjtsThemeConfig>({
@@ -158,6 +162,8 @@ function genConfig() {
       },
       enableDisclaimer: enableDisclaimer,
       disclaimerPaths: disclaimerPaths,
+      disclaimerStatusKey: disclaimerStatusKey,
+      disclaimerStatusExpiration: disclaimerStatusExpiration,
       // label localization
       outline: { label: '本页大纲', level: 'deep' },
       lastUpdated: { text: '最后更新' },
