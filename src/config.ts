@@ -1,8 +1,9 @@
 import type { DefaultTheme } from 'vitepress'
+import type { DisclaimerPathConfig } from './utils/themeContext'
 import fs from 'node:fs'
 import path, { dirname, resolve } from 'node:path'
-import process from 'node:process'
 
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import { transformHeadMeta } from '@nolebase/vitepress-plugin-meta'
@@ -12,11 +13,10 @@ import katex from 'markdown-it-katex'
 import mdPangu from 'markdown-it-pangu'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
+
 import { defineConfigWithTheme } from 'vitepress'
-
 import { generateSidebar } from './sidebar'
-import { useThemeContext, DisclaimerPathConfig } from './utils/themeContext'
-
+import { useThemeContext } from './utils/themeContext'
 
 export interface PjtsThemeConfig extends DefaultTheme.Config {
   enableChangeLog?: boolean
@@ -91,6 +91,7 @@ function genConfig() {
     disclaimerPaths,
     disclaimerStatusKey,
     disclaimerStatusExpiration,
+    locales, // i18n
   } = themeConfig
 
   return defineConfigWithTheme<PjtsThemeConfig>({
@@ -160,10 +161,10 @@ function genConfig() {
         pattern: `${githubRepoLink}/edit/main/${sitePattern}/:path`,
         text: '在 GitHub 上编辑此页面', // label localization
       },
-      enableDisclaimer: enableDisclaimer,
-      disclaimerPaths: disclaimerPaths,
-      disclaimerStatusKey: disclaimerStatusKey,
-      disclaimerStatusExpiration: disclaimerStatusExpiration,
+      enableDisclaimer,
+      disclaimerPaths,
+      disclaimerStatusKey,
+      disclaimerStatusExpiration,
       // label localization
       outline: { label: '本页大纲', level: 'deep' },
       lastUpdated: { text: '最后更新' },
@@ -216,6 +217,7 @@ function genConfig() {
       },
       fontsBaseUrl,
     },
+    locales, // i18n
     transformHead: async (context) => {
       let head = [...context.head]
 

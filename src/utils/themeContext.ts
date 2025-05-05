@@ -4,11 +4,17 @@ import { AsyncLocalStorage } from 'node:async_hooks'
 
 type NavConfig = DefaultTheme.NavItem[]
 
-
 export interface DisclaimerPathConfig {
-  path: string; // The path prefix to match
-  summaryHtml: string; // HTML content for the summary view
-  detailHtml?: string; // Optional HTML content for the detailed view
+  path: string // The path prefix to match
+  summaryHtml: string // HTML content for the summary view
+  detailHtml?: string // Optional HTML content for the detailed view
+}
+
+// 支持 vitepress 官方 i18n
+export interface LocalesConfig {
+  label: string
+  lang: string
+  link?: string
 }
 
 export interface ThemeContext {
@@ -32,9 +38,10 @@ export interface ThemeContext {
   hostName: string
   fontsBaseUrl?: string
   enableDisclaimer?: boolean
-  disclaimerPaths?: DisclaimerPathConfig[],
+  disclaimerPaths?: DisclaimerPathConfig[]
   disclaimerStatusKey?: string
   disclaimerStatusExpiration?: number
+  locales?: { [key: string]: LocalesConfig } // i18n
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
