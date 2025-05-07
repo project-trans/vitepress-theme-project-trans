@@ -20,7 +20,7 @@ export interface LocalesConfig {
 export interface ThemeContext {
   siteTitle: string
   siteLogo: string
-  SiteTitle: string
+  SiteTitle?: string
   baseUrl?: string
   siteDescription: string
   githubRepoLink: string
