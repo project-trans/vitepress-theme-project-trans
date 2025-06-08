@@ -89,6 +89,12 @@ const themeConfig: ThemeContext = {
       // 其余 locale 特定属性...
     },
   },
+  // 添加自定义 head 元素
+  // additionalHead: [
+  //   ['link', { rel: 'icon', href: 'https://rle.wiki/logo-with-shadow.png' }],
+  //   ['meta', { name: 'theme-color', content: '#ffffff' }],
+  //   ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+  // ],
 }
 
 // https://vitepress.dev/reference/site-config

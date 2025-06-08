@@ -17,6 +17,10 @@ export interface LocalesConfig {
   link?: string
 }
 
+export type HeadConfig =
+  | [string, Record<string, string>]
+  | [string, Record<string, string>, string]
+
 export interface ThemeContext {
   siteTitle: string
   siteLogo: string
@@ -42,6 +46,7 @@ export interface ThemeContext {
   disclaimerStatusKey?: string
   disclaimerStatusExpiration?: number
   locales?: { [key: string]: LocalesConfig } // i18n
+  additionalHead?: HeadConfig[] // Additional head elements
 }
 
 const themeContext = new AsyncLocalStorage<ThemeContext>()
