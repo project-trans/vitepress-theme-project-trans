@@ -49,7 +49,28 @@ const themeConfig: ThemeContext = {
       + '<p>若存在任何有误或不当内容，请联系 <a href="mailto:rlewiki@project-trans.org">rlewiki@project-trans.org</a>。</p>',
   },],
   disclaimerStatusKey: 'disclaimerStatus', // 若要存储免责声明 banner 隐藏状态，需要指定此字段，存储在localStorage中
-  disclaimerStatusExpiration: 1000 // 指定 disclaimerStatus 有效的毫秒数，1000这个值显然太短了，你需要选个更大的数，默认持续生效7天
+  disclaimerStatusExpiration: 1000, // 指定 disclaimerStatus 有效的毫秒数，1000这个值显然太短了，你需要选个更大的数，默认持续生效7天
+
+  // i18n
+  locales: {
+    root: {
+      label: '中文',
+      lang: 'zh',
+    },
+    fr: {
+      label: 'French',
+      lang: 'fr', // 可选，将作为 `lang` 属性添加到 `html` 标签中
+      link: '/fr/', // 默认 /fr/ -- 显示在导航栏翻译菜单上，可以是外部的
+
+      // 其余 locale 特定属性...
+    },
+  },
+  // 添加自定义 head 元素
+  additionalHead: [
+    ['link', { rel: 'icon', href: 'https://rle.wiki/logo-with-shadow.png' }],
+    ['meta', { name: 'theme-color', content: '#ffffff' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+  ],
 }
 
 // https://vitepress.dev/reference/site-config

@@ -92,6 +92,7 @@ function genConfig() {
     disclaimerStatusKey,
     disclaimerStatusExpiration,
     locales, // i18n
+    additionalHead = [],
   } = themeConfig
 
   return defineConfigWithTheme<PjtsThemeConfig>({
@@ -140,6 +141,7 @@ function genConfig() {
       ['meta', { name: 'msapplication-TileColor', content: '#4c4c4c' }],
       ['meta', { name: 'theme-color', content: '#ffffff' }],
       ['meta', { property: 'og:site_name', content: siteTitle }],
+      ...additionalHead, // 其他自定义的 head 元素
     ],
     themeConfig: {
       org,
