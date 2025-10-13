@@ -53,27 +53,27 @@
     "vue": "^3.5.13"
   },
   "dependencies": {
-    "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.14.0",
-    "@nolebase/vitepress-plugin-git-changelog": "^2.14.0",
-    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.14.0",
-    "@nolebase/vitepress-plugin-meta": "^2.14.0",
+    "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.18.2",
+    "@nolebase/vitepress-plugin-git-changelog": "^2.18.2",
+    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.18.2",
+    "@nolebase/vitepress-plugin-meta": "^2.18.2",
     "@project-trans/suggestion-box": "^0.6.1",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-pangu": "^1.0.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.3.0",
+    "@antfu/eslint-config": "^5.4.1",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^22.13.5",
-    "@unocss/eslint-plugin": "^66.0.0",
-    "eslint": "^9.21.0",
-    "eslint-plugin-format": "^1.0.1",
-    "typescript": "^5.7.3",
-    "unbuild": "3.3.1",
-    "unplugin-vue-components": "^28.4.0",
-    "vue-tsc": "^2.2.2"
+    "@types/node": "^24.7.2",
+    "@unocss/eslint-plugin": "^66.5.3",
+    "eslint": "^9.37.0",
+    "eslint-plugin-format": "^1.0.2",
+    "typescript": "^5.9.3",
+    "unbuild": "3.6.1",
+    "unplugin-vue-components": "^29.1.0",
+    "vue-tsc": "^3.1.1"
   },
   "pnpm": {
     "overrides": {

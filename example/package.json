@@ -10,5 +10,7 @@
   "dependencies": {
     "@project-trans/vitepress-theme-project-trans": "workspace:*"
   },
-  "devDependencies": { "vitepress": "^1.2.3" }
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
 }
