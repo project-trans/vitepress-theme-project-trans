@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useRoute } from 'vitepress'
 import { computed } from 'vue'
+import { titleSorter } from '../utils/titleSorter'
 import { data } from './articlesmenu.data'
 
+const { sortByPinyin = false } = defineProps<{ sortByPinyin?: boolean }>()
 const route = useRoute()
-const articles = computed(() =>
-  data
+const articles = computed(() => {
+  const result = data
     .filter((article) => {
       if (!article.url.startsWith(route.path))
         return false
@@ -19,7 +21,12 @@ const articles = computed(() =>
         return false
       return true
     })
-    .map(article => ({ link: article.url, text: article.title })),
+    .map(article => ({ link: article.url, text: article.title }))
+  if (sortByPinyin) {
+    result.sort(titleSorter)
+  }
+  return result
+},
 )
 </script>
 

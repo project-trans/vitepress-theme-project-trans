@@ -1,10 +1,10 @@
 import type {
-  SidebarItem,
   SidebarMultiItem,
   VitePressSidebarOptions,
 } from 'vitepress-sidebar/types'
 import { generateSidebar as genSidebar } from 'vitepress-sidebar'
 import { useThemeContext } from './utils/themeContext'
+import { titleSorter } from './utils/titleSorter'
 
 export function generateSidebar() {
   const { sidebarOptions } = useThemeContext()
@@ -13,21 +13,8 @@ export function generateSidebar() {
   for (const key in sidebar) {
     const sidebarMultiItem: SidebarMultiItem = (sidebar as any)[key]
     if (optionMap.get(sidebarMultiItem.base)?.sortMenusByFrontmatterOrder !== true) {
-      sidebarMultiItem.items.sort(sidebarTitleSorter)
+      sidebarMultiItem.items.sort(titleSorter)
     }
   }
   return sidebar
-}
-
-function sidebarTitleSorter(infoA: SidebarItem, infoB: SidebarItem): number {
-  const textA = infoA.text
-  const textB = infoB.text
-  if (textA === undefined || textB === undefined)
-    return 0
-
-  const infoANfc = textA.normalize('NFC')
-  const infoBNfc = textB.normalize('NFC')
-  return infoANfc.localeCompare(infoBNfc, 'zh', {
-    numeric: true,
-  })
 }
