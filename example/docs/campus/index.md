@@ -14,4 +14,4 @@ category:
 
 ## 大学目录
 
-<ArticlesMenu />
+<ArticlesMenu sortByPinyin />
